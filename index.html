@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    /*全局css变量: 字体等和主题无关的可以放置到这里，可以放大缩小字体等*/
+    :root {
+      --font-base-size: 28px;
+    }
+
+    /*dark深色主题特有的css变量*/
+    .dark {
+      --font-color: blueviolet;
+      background-image: linear-gradient(to right, #ff8177 0%, #ff867a 0%, #ff8c7f 21%, #f99185 52%, #cf556c 78%, #b12a5b 100%);
+    }
+
+    /*light浅色主题特有的css变量*/
+    .light {
+      --font-color: #fc7b0b;
+      background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+    }
+
+    p {
+      color: var(--font-color);
+      font-size: var(--font-base-size);
+    }
+
+
+    .btn-grad {
+      background-image: linear-gradient(to right, #E55D87 0%, #5FC3E4 51%, #E55D87 100%)
+    }
+
+    .btn-grad {
+      margin: 10px;
+      padding: 15px 45px;
+      text-align: center;
+      text-transform: uppercase;
+      transition: 0.5s;
+      background-size: 200% auto;
+      color: white;
+      box-shadow: 0 0 20px #eee;
+      border-radius: 10px;
+      display: inline-block;
+    }
+
+    .btn-grad:hover {
+      background-position: right center; /* change the direction of the change here */
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .btn-grad2 {background-image: linear-gradient(to right, #3D7EAA 0%, #FFE47A  51%, #3D7EAA  100%)}
+    .btn-grad2 {
+      margin: 10px;
+      padding: 15px 45px;
+      text-align: center;
+      text-transform: uppercase;
+      transition: 0.5s;
+      background-size: 200% auto;
+      color: white;
+      box-shadow: 0 0 20px #eee;
+      border-radius: 10px;
+      display: inline-block;
+    }
+
+    .btn-grad2:hover {
+      background-position: right center; /* change the direction of the change here */
+      color: #fff;
+      text-decoration: none;
+    }
+
+
+    .btn-grad3 {background-image: linear-gradient(to right, #FC354C 0%, #0ABFBC  51%, #FC354C  100%)}
+    .btn-grad3 {
+      margin: 10px;
+      padding: 15px 45px;
+      text-align: center;
+      text-transform: uppercase;
+      transition: 0.5s;
+      background-size: 200% auto;
+      color: white;
+      box-shadow: 0 0 20px #eee;
+      border-radius: 10px;
+      display: inline-block;
+    }
+
+    .btn-grad3:hover {
+      background-position: right center; /* change the direction of the change here */
+      color: #fff;
+      text-decoration: none;
+    }
+
+    h2 {
+      text-align: center;
+      font-family: Avenir-Black,Avenir;
+      color: #202a4d;
+    }
+  </style>
+</head>
+<body class="dark">
+<h2>采用css3变量切换主题和字体放大缩小，全局抽象控制UI原理</h2>
+<div>
+  <button class="btn-grad" onclick="themeChangeHandler(1)">深色</button>
+  <button class="btn-grad2" onclick="themeChangeHandler(2)">浅色</button>
+  <button class="btn-grad3" onclick="fontSizeChangeHandler('plus')">放大字体</button>
+  <button class="btn-grad3" onclick="fontSizeChangeHandler('reduce')">缩小字体</button>
+</div>
+
+<div id="app">
+  <p>恢复建设的环境设计和交付后是否合适的话就会放假时间客户缴费时间</p>
+  <p>恢复建设的环境设计和交付后是否合适的话就会放假时间客户缴费时间</p>
+  <p>恢复建设的环境设计和交付后是否合适的话就会放假时间客户缴费时间</p>
+  <p>恢复建设的环境设计和交付后是否合适的话就会放假时间客户缴费时间</p>
+  <p>恢复建设的环境设计和交付后是否合适的话就会放假时间客户缴费时间</p>
+  <p>恢复建设的环境设计和交付后是否合适的话就会放假时间客户缴费时间</p>
+  <p>恢复建设的环境设计和交付后是否合适的话就会放假时间客户缴费时间</p>
+</div>
+
+<script>
+  // 枚举
+  const THEME_ENUM = new Map([[1, 'dark'], [2, 'light']])
+
+  function themeChangeHandler(themeId) {
+    const themeName = THEME_ENUM.get(themeId)
+    console.log(themeName)
+
+    // document.body.setAttribute('class', themeName)
+    document.body.className = themeName
+  }
+
+  let fontSize = 28
+
+  // document.querySelector(':root') === document.documentElement // true
+
+  function fontSizeChangeHandler(type) {
+    if (type === 'plus') {
+      document.querySelector(':root').style.setProperty('--font-base-size', (fontSize += 5) + 'px')
+    } else {
+      document.querySelector(':root').style.setProperty('--font-base-size', (fontSize -= 5) + 'px')
+    }
+  }
+</script>
+</body>
+</html>
